@@ -26,16 +26,12 @@ public class StickersTest{
 
     @Test
     public void checkStickers() {
-        //Логинимся
-        driver.findElement(By.name("email")).sendKeys("dkhmelkova@mail.ru");
-        driver.findElement(By.name("password")).sendKeys("dkhmelkova");
-        driver.findElement(By.name("login")).click();
         //Ищем все карточки товара
-        List<WebElement> products = driver.findElements(By.cssSelector("[class=product]"));
+        List<WebElement> products = driver.findElements(By.cssSelector(".product"));
         int sizeProducts = products.size();
         for (int b = 0; b < sizeProducts; b++) {
             //Ищем стикеры в карточке
-            List<WebElement> stickers = products.get(b).findElements(By.cssSelector("[class=sticker]"));
+            List<WebElement> stickers = products.get(b).findElements(By.cssSelector(".sticker"));
             //Проверяем, что в карточке только один стикер
             int stickersQuantityExpected = 1;
             int stickersQuantityActual = stickers.size();
