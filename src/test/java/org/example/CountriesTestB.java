@@ -45,13 +45,13 @@ public class CountriesTestB {
             if (number != 0){
                 String link = countries.get(b).getText();
                 driver.findElement(By.linkText(link)).click();
-                List<WebElement> countriesOnPage = driver.findElements(By.cssSelector("td:nth-child(3)>input[type='hidden']"));
+                List<WebElement> countriesOnPage = driver.findElements(By.cssSelector("td:nth-child(3)>input[name*='zones']"));
                 int q = countriesOnPage.size();
                 ArrayList<String> actual = new ArrayList<>();
                 ArrayList<String> expected = new ArrayList<>();
                 for (int w = 0; w < q; w++) {
                     //Сохраняем наименование страны
-                    String name = countriesOnPage.get(w).getText();
+                    String name = countriesOnPage.get(w).getAttribute("value");
                     //Добавляем в список
                     actual.add(w, name);
                     expected.add(w, name);
@@ -61,8 +61,10 @@ public class CountriesTestB {
                 for (int l = 0; l < q; l++) {
                     //Вытаскиваем фактическое наименовение
                     String actName = actual.get(l);
+                    System.out.println(actName);
                     //Вытаскиваем ожидаемое наименование
                     String expdName = expected.get(l);
+                    System.out.println(expdName);
                     //Сравниваем
                     Assert.assertEquals(actName, expdName);
                 }
